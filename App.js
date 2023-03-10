@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import MobileCalendar from 'react-scroll-calendar';
+import moment from 'moment';
+// import "react-scroll-calendar/build/react-scroll-calendar.css";
 
 export default function App() {
   const [mDateNum, setMDateNum] = useState("0");
-  const mComingColor = {key:'mcome', color:'red'};
+  const mComingColor = { key: 'mcome', color: 'red' };
   const marked = {
-    '2023-02-15': {"color": "rbga(255, 255, 255, .30)", "dotColor": "#E892F8", "marked": true},
-    '2023-02-11': {"color": "rbga(255, 255, 255, .30)", "dotColor": "#E892F8", "marked": true},
+    "2023-02-14": { selected: true, marked: true, selectedColor: "#F67280" },
+    "2020-09-05": { selected: true, marked: true, selectedColor: "#F67280" },
   };
   const [selectedDate, setSelectedDate] = useState('');
-  onChanged = (text) =>
-  {
+  onChanged = (text) => {
     setMDateNum(text)
   }
 
   return (
-    <View style={{ justifyContent: 'center',flex: 1, alignItems: 'center' }}>
+    <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
       <TextInput
         style={styles.input}
         keyboardType='numeric'
@@ -26,15 +27,15 @@ export default function App() {
         value={mDateNum}
         placeholder="Enter text"
         placeholderTextColor="#ccc"
-        onDayPress={(day) => setSelectedDate(day.dateString)}
         borderWidth={1}
         borderColor="#ccc"
         borderRadius={4}
-        markingType="multi-dot"
-        markedDates={{marked}}
+
       />
       <View style={{ marginTop: 16 }}>
-        <Calendar/>
+      <MobileCalendar
+        
+      />
       </View>
     </View>
   );
